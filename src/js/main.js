@@ -12,6 +12,51 @@ recipe_selectors = [
 	'div[itemtype="https://schema.org/Recipe"]',
 ]
 
+carbon_data = {
+	"Apples": 0.43,
+	"Bananas": 0.86,
+	"Barley": 1.18,
+	"Beef": 99.48,
+	"Beet Sugar": 1.81,
+	"Berries": 1.53,
+	"Grapes": 1.53,
+	"Brassicas": 0.51,
+	"Cane Sugar": 3.2,
+	"Cassava": 1.32,
+	"Cheese": 23.88,
+	"Chicken": 9.87,
+	"Citrus Fruit": 0.39,
+	"Coffee": 28.53, 
+	"Dark Chocolate": 46.65,
+	"Eggs":4.67, 
+	"Fish": 13.63, 
+	"Groundnuts": 3.23, 
+	"Lamb": 39.72,
+	"Mutton": 39.72, 
+	"Leeks": 0.5, 
+	"Maize":1.7, 
+	"Milk": 3.15, 
+	"Nuts": 0.43, 
+	"Oatmeal": 2.48, 
+	"Onions": 0.5, 
+	"Other Fruit": 1.05,
+	"Other Pulses": 1.79,
+	"Other Vegetables": 0.53,
+	"Peas": 0.98,
+	"Pork": 12.31, 
+	"Potatoes": 0.46,
+	"Poultry Meat": 9.87,
+	"Shrimp": 26.87,
+	"Rice": 4.45,
+	"Root Vegetables": 0.43,
+	"Soy milk": 0.98,
+	"Tofu": 3.16,
+	"Tomatoes": 2.09,
+	"Wheat": 1.57,
+	"Rye": 1.57,
+	"Wine": 1.79
+}
+
 const closeButton = document.createElement('button');
 closeButton.id = '_rf_closebtn';
 closeButton.classList.add('_rfbtn');
