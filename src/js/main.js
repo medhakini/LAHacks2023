@@ -29,7 +29,7 @@ myText.textContent = 'Hello';
 const controls = document.createElement('div');
 controls.id  = '_rf_header';
 controls.appendChild(closeButton);
-controls.appendChild(document.createTextNode('Recipe Filter'));
+controls.appendChild(document.createTextNode('Your Recipe\'s Emissions'));
 controls.appendChild(disableButton);
 controls.appendChild(myText);
 
