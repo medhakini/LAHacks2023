@@ -52,20 +52,19 @@ function showPopup(){
 			clone.style.opacity = 0;
 			let ingredients = clone.querySelector('.wprm-recipe-ingredients');
 			if (ingredients) {
-			  let ingredientList = document.createElement('ul');
-			  ingredientList.classList.add('ingredient-list');
+			  let ingredientList = [];
 	  
 			  let ingredientItems = ingredients.querySelectorAll('.wprm-recipe-ingredient');
 			  console.log(ingredientItems)
+			  console.log(ingredientItems.length)
 			  for (let i = 0; i < ingredientItems.length; i++) {
 				let ingredientName = ingredientItems[i].querySelector('.wprm-recipe-ingredient-name');
-				console.log(ingredientName)
 				if (ingredientName) {
-				  let li = document.createElement('li');
-				  li.textContent = ingredientName.textContent;
-				  ingredientList.appendChild(li);
+				  let s = ingredientName.textContent;
+				  ingredientList.push(s);
 				}
 			  }
+			  console.log(ingredientList)
 			}
 
 			document.body.insertBefore(clone, document.body.firstChild);
