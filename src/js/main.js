@@ -50,6 +50,23 @@ function showPopup(){
 			clone.style.transition = 'opacity 500ms';
 			clone.style.display = 'block';
 			clone.style.opacity = 0;
+			let ingredients = clone.querySelector('.wprm-recipe-ingredients');
+			if (ingredients) {
+			  let ingredientList = document.createElement('ul');
+			  ingredientList.classList.add('ingredient-list');
+	  
+			  let ingredientItems = ingredients.querySelectorAll('.wprm-recipe-ingredient');
+			  console.log(ingredientItems)
+			  for (let i = 0; i < ingredientItems.length; i++) {
+				let ingredientName = ingredientItems[i].querySelector('.wprm-recipe-ingredient-name');
+				console.log(ingredientName)
+				if (ingredientName) {
+				  let li = document.createElement('li');
+				  li.textContent = ingredientName.textContent;
+				  ingredientList.appendChild(li);
+				}
+			  }
+			}
 
 			document.body.insertBefore(clone, document.body.firstChild);
 

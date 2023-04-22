@@ -9,6 +9,7 @@ chrome.storage.sync.get(null, function(data){
 	let selectors = [];
 
 	for (site in data) {
+		console.log(data)
 		rowMarkup += `<tr>
 			<td id="${site}" class="trash-cell" style="cursor:pointer;">&#9447;</td>
 			<td>${site}</td>
