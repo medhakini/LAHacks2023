@@ -22,11 +22,16 @@ disableButton.id = '_rf_disablebtn';
 disableButton.classList.add('_rfbtn');
 disableButton.textContent = 'disable on this site';
 
+const myText = document.createElement('span');
+myText.classList.add('_list');
+myText.textContent = 'Hello';
+
 const controls = document.createElement('div');
 controls.id  = '_rf_header';
 controls.appendChild(closeButton);
 controls.appendChild(document.createTextNode('Recipe Filter'));
 controls.appendChild(disableButton);
+controls.appendChild(myText);
 
 function hidePopup(){
 	let highlight = document.getElementById('_rf_highlight');
@@ -52,19 +57,20 @@ function showPopup(){
 			clone.style.opacity = 0;
 			let ingredients = clone.querySelector('.wprm-recipe-ingredients');
 			if (ingredients) {
-			  let ingredientList = [];
+			  let ingredientList = document.createElement('ul');
+			  ingredientList.classList.add('ingredient-list');
 	  
 			  let ingredientItems = ingredients.querySelectorAll('.wprm-recipe-ingredient');
 			  console.log(ingredientItems)
-			  console.log(ingredientItems.length)
 			  for (let i = 0; i < ingredientItems.length; i++) {
 				let ingredientName = ingredientItems[i].querySelector('.wprm-recipe-ingredient-name');
+				console.log(ingredientName)
 				if (ingredientName) {
-				  let s = ingredientName.textContent;
-				  ingredientList.push(s);
+				  let li = document.createElement('li');
+				  li.textContent = ingredientName.textContent;
+				  ingredientList.appendChild(li);
 				}
 			  }
-			  console.log(ingredientList)
 			}
 
 			document.body.insertBefore(clone, document.body.firstChild);
