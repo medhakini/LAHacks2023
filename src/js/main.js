@@ -76,16 +76,13 @@ disableButton.id = '_rf_disablebtn';
 disableButton.classList.add('_rfbtn');
 disableButton.textContent = 'disable on this site';
 
-const myText = document.createElement('span');
-myText.classList.add('_list');
-myText.textContent = 'Hello';
+
 
 const controls = document.createElement('div');
 controls.id  = '_rf_header';
 controls.appendChild(closeButton);
 controls.appendChild(document.createTextNode('Your Recipe\'s Emissions'));
 controls.appendChild(disableButton);
-controls.appendChild(myText);
 
 function hidePopup(){
 	let highlight = document.getElementById('_rf_highlight');
@@ -105,7 +102,7 @@ function showPopup(){
 			let clone = original.cloneNode(true);
 			clone.id = '_rf_highlight';
 			// add some control buttons
-			clone.prepend(controls);
+			//clone.prepend(controls);
 			clone.style.transition = 'opacity 500ms';
 			clone.style.display = 'block';
 			clone.style.opacity = 0;
@@ -132,8 +129,16 @@ function showPopup(){
 				}
 				}
 			  }
-			  console.log(ingredientList)
-			  console.log(carbonTotal)
+			console.log(ingredientList)
+			console.log(carbonTotal)
+			const myText = document.createElement('span');
+			myText.classList.add('_list');
+			let str = carbonTotal
+			myText.textContent = 'Greenhouse Gas Emission Total for this Recipe is: ' + str + 'kg of GHG/kg of food';
+
+			controls.appendChild(myText);
+			clone.prepend(controls)
+
 			}
 
 			document.body.insertBefore(clone, document.body.firstChild);
