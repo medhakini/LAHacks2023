@@ -28,7 +28,7 @@ carbon_data = {
 	"Citrus Fruit": 0.39,
 	"Coffee": 28.53, 
 	"Dark Chocolate": 46.65,
-	"Eggs":4.67, 
+	"Large Eggs": 4.67, 
 	"Fish": 13.63, 
 	"Groundnuts": 3.23, 
 	"Lamb": 39.72,
@@ -54,7 +54,16 @@ carbon_data = {
 	"Tomatoes": 2.09,
 	"Wheat": 1.57,
 	"Rye": 1.57,
-	"Wine": 1.79
+	"Wine": 1.79,
+	"Soy Sauce": 1.2,
+
+	"Carrot": 0.53,
+	"Sliced Beef": 99.48
+}
+
+var lowercase_carbon_data = {};
+for (var key in carbon_data) {
+	lowercase_carbon_data[key.toLowerCase()] = carbon_data[key];
 }
 
 const closeButton = document.createElement('button');
@@ -102,8 +111,8 @@ function showPopup(){
 			clone.style.opacity = 0;
 			let ingredients = clone.querySelector('.wprm-recipe-ingredients');
 			if (ingredients) {
-			  let ingredientList = document.createElement('ul');
-			  ingredientList.classList.add('ingredient-list');
+			  let ingredientList = [];
+			  let carbonTotal = 0;
 	  
 			  let ingredientItems = ingredients.querySelectorAll('.wprm-recipe-ingredient');
 			  console.log(ingredientItems)
@@ -111,11 +120,20 @@ function showPopup(){
 				let ingredientName = ingredientItems[i].querySelector('.wprm-recipe-ingredient-name');
 				console.log(ingredientName)
 				if (ingredientName) {
-				  let li = document.createElement('li');
-				  li.textContent = ingredientName.textContent;
-				  ingredientList.appendChild(li);
+				  let s = ingredientName.textContent;
+				  ingredientList.push(s);
+
+				// check if ingredient is in database
+				lower_ingredient = s.toLowerCase()
+				if (lowercase_carbon_data.hasOwnProperty(lower_ingredient)) {
+					carbon_value = lowercase_carbon_data[lower_ingredient]
+					console.log(carbon_value)
+					carbonTotal += carbon_value
+				}
 				}
 			  }
+			  console.log(ingredientList)
+			  console.log(carbonTotal)
 			}
 
 			document.body.insertBefore(clone, document.body.firstChild);
