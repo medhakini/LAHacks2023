@@ -12,6 +12,60 @@ recipe_selectors = [
 	'div[itemtype="https://schema.org/Recipe"]',
 ]
 
+carbon_data = {
+	"Apples": 0.43,
+	"Bananas": 0.86,
+	"Barley": 1.18,
+	"Beef": 99.48,
+	"Beet Sugar": 1.81,
+	"Berries": 1.53,
+	"Grapes": 1.53,
+	"Brassicas": 0.51,
+	"Cane Sugar": 3.2,
+	"Cassava": 1.32,
+	"Cheese": 23.88,
+	"Chicken": 9.87,
+	"Citrus Fruit": 0.39,
+	"Coffee": 28.53, 
+	"Dark Chocolate": 46.65,
+	"Large Eggs": 4.67, 
+	"Fish": 13.63, 
+	"Groundnuts": 3.23, 
+	"Lamb": 39.72,
+	"Mutton": 39.72, 
+	"Leeks": 0.5, 
+	"Maize":1.7, 
+	"Milk": 3.15, 
+	"Nuts": 0.43, 
+	"Oatmeal": 2.48, 
+	"Onions": 0.5, 
+	"Other Fruit": 1.05,
+	"Other Pulses": 1.79,
+	"Other Vegetables": 0.53,
+	"Peas": 0.98,
+	"Pork": 12.31, 
+	"Potatoes": 0.46,
+	"Poultry Meat": 9.87,
+	"Shrimp": 26.87,
+	"Rice": 4.45,
+	"Root Vegetables": 0.43,
+	"Soy milk": 0.98,
+	"Tofu": 3.16,
+	"Tomatoes": 2.09,
+	"Wheat": 1.57,
+	"Rye": 1.57,
+	"Wine": 1.79,
+	"Soy Sauce": 1.2,
+
+	"Carrot": 0.53,
+	"Sliced Beef": 99.48
+}
+
+var lowercase_carbon_data = {};
+for (var key in carbon_data) {
+	lowercase_carbon_data[key.toLowerCase()] = carbon_data[key];
+}
+
 const closeButton = document.createElement('button');
 closeButton.id = '_rf_closebtn';
 closeButton.classList.add('_rfbtn');
@@ -57,8 +111,8 @@ function showPopup(){
 			clone.style.opacity = 0;
 			let ingredients = clone.querySelector('.wprm-recipe-ingredients');
 			if (ingredients) {
-			  let ingredientList = document.createElement('ul');
-			  ingredientList.classList.add('ingredient-list');
+			  let ingredientList = [];
+			  let carbonTotal = 0;
 	  
 			  let ingredientItems = ingredients.querySelectorAll('.wprm-recipe-ingredient');
 			  console.log(ingredientItems)
@@ -66,11 +120,20 @@ function showPopup(){
 				let ingredientName = ingredientItems[i].querySelector('.wprm-recipe-ingredient-name');
 				console.log(ingredientName)
 				if (ingredientName) {
-				  let li = document.createElement('li');
-				  li.textContent = ingredientName.textContent;
-				  ingredientList.appendChild(li);
+				  let s = ingredientName.textContent;
+				  ingredientList.push(s);
+
+				// check if ingredient is in database
+				lower_ingredient = s.toLowerCase()
+				if (lowercase_carbon_data.hasOwnProperty(lower_ingredient)) {
+					carbon_value = lowercase_carbon_data[lower_ingredient]
+					console.log(carbon_value)
+					carbonTotal += carbon_value
+				}
 				}
 			  }
+			  console.log(ingredientList)
+			  console.log(carbonTotal)
 			}
 
 			document.body.insertBefore(clone, document.body.firstChild);
